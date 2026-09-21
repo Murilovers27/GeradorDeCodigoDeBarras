@@ -33,7 +33,8 @@ if getattr(sys, "frozen", False):
 else:
     PASTA = Path(__file__).resolve().parent
     RECURSOS = PASTA
-MODELO = RECURSOS / "modelo_etiqueta.docx"
+MODELO = PASTA / "modelo_etiqueta.docx"
+
 SAIDA = PASTA / "saida"
 
 # Valores sugeridos no terminal (Enter aceita o sugerido).
@@ -52,6 +53,16 @@ FONTES = [
 
 
 # ---------------------------------------------------------------- geração ---
+def caminho_recurso(nome: str) -> Path:
+    """Arquivo embutido no .exe (ou ao lado do script, quando roda como .py)."""
+    base = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+    return base / nome
+
+
+# Se existir um modelo ao lado do .exe, ele tem prioridade; senão usa o embutido
+MODELO = PASTA / "modelo_etiqueta.docx"
+if not MODELO.exists():
+    MODELO = caminho_recurso("modelo_etiqueta.docx")
 def _fonte(tamanho: int):
     for caminho in FONTES:
         if os.path.exists(caminho):
