@@ -4,7 +4,6 @@ Aplicação desktop que preenche um modelo Word (`.docx`), gera o **código de b
 
 Antes, cada etiqueta exigia gerar o código de barras em um site, colar a imagem no Word e trocar os textos à mão. Agora basta escolher o intervalo e clicar em um botão.
 
-![Tela do aplicativo](docs/screenshot.png)
 
 ## Funcionalidades
 
